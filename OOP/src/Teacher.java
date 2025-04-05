@@ -1,4 +1,6 @@
-public class Teacher extends Human
+import java.io.Serializable;
+
+public class Teacher extends Human implements Serializable
 {
     String speciality;
     int experience;

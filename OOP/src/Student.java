@@ -1,4 +1,6 @@
-public class Student extends Human
+import java.io.Serializable;
+
+public class Student extends Human implements Serializable
 {
     String speciality;
     String group;
