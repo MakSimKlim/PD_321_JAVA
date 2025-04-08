@@ -10,71 +10,69 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
+    static String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+            + "database=PD_212;"
+            + "user=PHP;"
+            + "password=111;"
+            + "ConnectTimeout=30;"
+            + "Encrypt=True;"
+            + "TrustServerCertificate=True;"
+            + "ApplicationIntent=ReadWrite;"
+            + "MultiSubnetFailover=False;";
+    static Connection connection;
+
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
 
-        //Для подключения к DB нужно:
-        // скачать/распаковать sqljdbc_12.8.1.0_rus.zip и прочитать install.txt
-        // установить драйвер в проект из папки:
-        // C:\Program Files\Microsoft JDBC DRIVER 12.8 for SQL Server\rus\jars
-        // В IntelliJ: File → Project Structure → Libraries → "+" → Java → укажите путь к JAR
-        // Добавьте DLL для аутентификации
-        // Из скачанного архива драйвера возьмите файл
-        // Для 64-bit: auth/x64/mssql-jdbc_auth-12.8.0.x64.dll
-        // Для 32-bit: auth/x86/mssql-jdbc_auth-12.8.0.x86.dll
-        // Поместите его в:
-        // C:\Windows\System32 (для 64-bit)
-        // C:\Windows\SysWOW64 (для 32-bit)
-        // Откройте SQL Server Configuration Manager
-        // Разверните: Сетевая конфигурация SQL Server → Протоколы для MSSQLSERVER
-        // Включите TCP/IP (правой кнопкой → Включить)
-        // Запустите/Перезапустите SQL Server через:
-        // Windows: Пуск → Службы → найдите SQL Server (MSSQLSERVER) → Запустить
+        System.out.println(connectionString);
+        try {
+            connection = DriverManager.getConnection((connectionString));
 
-        String connectionString = "jdbc:sqlserver://EVEREST:1433;"
-                + "database=PD_212;"
-                + "user=PHP;"
-                + "password=111;"
-                + "ConnectTimeout=30;"
-                + "Encrypt=True;"
-                + "TrustServerCertificate=True;"
-                + "ApplicationIntent=ReadWrite;"
-                + "MultiSubnetFailover=False;";
-        Connector connector = new Connector(connectionString);
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+
+        //Connector connector = new Connector(connectionString);
         //connector.Select("SELECT * FROM Students JOIN Groups ON ([group]=group_id)");
         String query = "SELECT " +
                 "FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name) AS N'Студент', " +
                 "group_name," +
                 "direction_name " +
                 "FROM Students JOIN Groups ON ([group]=group_id) JOIN Directions ON (direction=direction_id)";
-        connector.Select(query);
-
-        String scalarQuery = "SELECT COUNT(*) FROM Students";
-        //System.out.println(connector.Scalar(scalarQuery));
-        connector.Select("SELECT * FROM Directions");
-
-        //try(Connection connection = DriverManager.getConnection(connectionString))
-        /*try
+        Select(query);
+        Select("SELECT * FROM Directions");
+    }
+        public static void Select (String query)
         {
-            //if(connection!=null);
-            //System.out.println("\nПодключение успешно установлено!");
-            Connection connection = DriverManager.getConnection(connectionString);
-            Statement statement = connection.createStatement();//Открывает соединение
+            try {
+                Statement statement = connection.createStatement();//Открывает соединение????
 
-            ResultSet results = statement.executeQuery("SELECT * FROM Directions");
-            while (results.next())
-            {
-                byte id = results.getByte("direction_id");
+                //ResultSet results = statement.executeQuery("SELECT * FROM Directions");
+                ResultSet results = statement.executeQuery(query);
+                //нужно вытащить имена полей
+                ResultSetMetaData metaData = results.getMetaData();
+                for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                    System.out.println(metaData.getColumnName(i) + "\t\t" + metaData.getColumnClassName(i));
+                }
+                System.out.println();
+                while (results.next()) {
+                /*byte id = results.getByte("direction_id");
                 String name = results.getString("direction_name");
-                System.out.println(id+"\t\t"+name);
+                System.out.println(id+"\t\t"+name);*/
+                    for (int i = 1; i <= metaData.getColumnCount(); i++) {
+                        System.out.print(results.getObject(i) + "\t");
+                    }
+                    System.out.println();
+                }
+                results.close();
+                //connection.close();//Закрывает то, что открыл Statement
+                //если закрыть, то последующие Select() НЕ будут работать
+            }
+            catch (SQLException e)
+            {
+                System.err.println(e.getMessage());
             }
 
-            connection.close();//закрывает соединение
-
         }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }*/
-    }
+
 }

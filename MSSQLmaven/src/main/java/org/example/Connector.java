@@ -49,9 +49,9 @@ public class Connector  {
             System.out.println();
             while (results.next())
             {
-                /*byte id = results.getByte("direction_id");
-                String name = results.getString("direction_name");
-                System.out.println(id+"\t\t"+name);*/
+                //byte id = results.getByte("direction_id");
+                //String name = results.getString("direction_name");
+                //System.out.println(id+"\t\t"+name);
                 for(int i=1; i<=metaData.getColumnCount(); i++)
                 {
                     System.out.print(results.getObject(i)+"\t");
