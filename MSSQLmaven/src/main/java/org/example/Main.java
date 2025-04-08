@@ -40,9 +40,21 @@ public class Main {
                 + "TrustServerCertificate=True;"
                 + "ApplicationIntent=ReadWrite;"
                 + "MultiSubnetFailover=False;";
+        Connector connector = new Connector(connectionString);
+        //connector.Select("SELECT * FROM Students JOIN Groups ON ([group]=group_id)");
+        String query = "SELECT " +
+                "FORMATMESSAGE(N'%s %s %s', last_name, first_name, middle_name) AS N'Студент', " +
+                "group_name," +
+                "direction_name " +
+                "FROM Students JOIN Groups ON ([group]=group_id) JOIN Directions ON (direction=direction_id)";
+        connector.Select(query);
+
+        String scalarQuery = "SELECT COUNT(*) FROM Students";
+        //System.out.println(connector.Scalar(scalarQuery));
+        connector.Select("SELECT * FROM Directions");
 
         //try(Connection connection = DriverManager.getConnection(connectionString))
-        try
+        /*try
         {
             //if(connection!=null);
             //System.out.println("\nПодключение успешно установлено!");
@@ -63,6 +75,6 @@ public class Main {
         catch (SQLException e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 }
