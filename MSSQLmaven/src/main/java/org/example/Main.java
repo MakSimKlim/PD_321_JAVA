@@ -31,7 +31,7 @@ public class Main {
         // Запустите/Перезапустите SQL Server через:
         // Windows: Пуск → Службы → найдите SQL Server (MSSQLSERVER) → Запустить
 
-        String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+        String connectionString = "jdbc:sqlserver://EVEREST:1433;"
                 + "database=PD_212;"
                 + "user=PHP;"
                 + "password=111;"
@@ -41,10 +41,24 @@ public class Main {
                 + "ApplicationIntent=ReadWrite;"
                 + "MultiSubnetFailover=False;";
 
-        try(Connection connection = DriverManager.getConnection(connectionString))
+        //try(Connection connection = DriverManager.getConnection(connectionString))
+        try
         {
-            if(connection!=null);
-            System.out.println("\nПодключение успешно установлено!");
+            //if(connection!=null);
+            //System.out.println("\nПодключение успешно установлено!");
+            Connection connection = DriverManager.getConnection(connectionString);
+            Statement statement = connection.createStatement();//Открывает соединение
+
+            ResultSet results = statement.executeQuery("SELECT * FROM Directions");
+            while (results.next())
+            {
+                byte id = results.getByte("direction_id");
+                String name = results.getString("direction_name");
+                System.out.println(id+"\t\t"+name);
+            }
+
+            connection.close();//закрывает соединение
+
         }
         catch (SQLException e)
         {

@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="JDK">
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" />
+    </JAVADOC>
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../Soft/JAVA/JDK" recursive="false" type="SOURCES" />
+  </library>
+</component>
