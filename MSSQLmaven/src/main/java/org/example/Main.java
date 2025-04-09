@@ -24,11 +24,12 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println(connectionString);
-        try {
+        try
+        {
             connection = DriverManager.getConnection((connectionString));
-
-
-        } catch (SQLException e) {
+        }
+        catch (SQLException e)
+        {
             System.err.println(e.getMessage());
         }
 
