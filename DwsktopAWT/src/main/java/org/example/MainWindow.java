@@ -1,8 +1,11 @@
 package org.example;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-public class MainWindow extends Frame{
+public class MainWindow extends JFrame {
     //Label results;
     Label lblLastName = new Label("Last name: ");
     Label lblFirstName = new Label("First name: ");
@@ -54,6 +57,7 @@ public class MainWindow extends Frame{
 
         btnSubmit.addActionListener(this::btnSubmitHandler);//подписка на события
 
+
         GridLayout grid = new GridLayout(5,2,30,30);
         //this.setLayout(null);
         this.setLayout(grid);
@@ -65,4 +69,5 @@ public class MainWindow extends Frame{
         this.results.setText(results);
 
     }
+
 }
