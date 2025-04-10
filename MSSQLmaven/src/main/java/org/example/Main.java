@@ -44,6 +44,7 @@ public class Main {
         Select("SELECT * FROM Directions");
         Select("SELECT COUNT(*) AS TotalDirections FROM Directions ");
         Select("SELECT COUNT(*) AS TotalTeachers FROM Teachers ");
+        Select("SELECT COUNT(*) AS TotalGroups FROM Groups ");
     }
         public static void Select (String query)
         {
