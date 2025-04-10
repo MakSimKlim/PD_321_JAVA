@@ -42,6 +42,8 @@ public class Main {
                 "FROM Students JOIN Groups ON ([group]=group_id) JOIN Directions ON (direction=direction_id)";
         Select(query);
         Select("SELECT * FROM Directions");
+        Select("SELECT COUNT(*) AS TotalDirections FROM Directions ");
+        Select("SELECT COUNT(*) AS TotalTeachers FROM Teachers ");
     }
         public static void Select (String query)
         {
