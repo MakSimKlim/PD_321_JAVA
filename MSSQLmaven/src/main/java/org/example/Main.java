@@ -31,7 +31,8 @@ public class Main {
         // Запустите/Перезапустите SQL Server через:
         // Windows: Пуск → Службы → найдите SQL Server (MSSQLSERVER) → Запустить
 
-        String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+        //String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+        String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
                 + "database=PD_212;"
                 + "user=PHP;"
                 + "password=111;"
