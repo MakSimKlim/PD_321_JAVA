@@ -5,12 +5,19 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.DatePicker?>
+<VBox alignment="CENTER" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.academyfx.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-
+    <Label text="Last name: "/>
+    <TextField fx:id="lastName" promptText="Last name:"/>
+    <Label text="First name: "/>
+    <TextField fx:id="firstName" promptText="First name:"/>
+    <Label text="Age: "/>
+    <DatePicker fx:id="age" promptText="Birth Date:"/>
     <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Button text="Submit!" onAction="#onHelloButtonClick"/>
 </VBox>
