@@ -12,6 +12,7 @@
         <maven.compiler.source>24</maven.compiler.source>
         <maven.compiler.target>24</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     </properties>
 
     <build>
@@ -22,10 +23,10 @@
             <version>0.0.8</version>
             <configuration>
                 <mainClass>org.example.Main</mainClass>
+
             </configuration>
         </plugin>
     </plugins>
-
     </build>
 
 
