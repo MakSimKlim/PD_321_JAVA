@@ -10,7 +10,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
-    static String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+    //static String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+    static String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
             + "database=PD_212;"
             + "user=PHP;"
             + "password=111;"
