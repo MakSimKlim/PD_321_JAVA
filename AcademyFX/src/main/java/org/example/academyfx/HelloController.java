@@ -35,7 +35,8 @@ public class HelloController {
     @FXML
     protected void onLoadButtonClick() throws SQLException
     {
-        String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+        //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+        String connectionString = "jdbc:sqlserver://EVEREST:1433;"
                 + "database=PD_212;"
                 + "user=PHP;"
                 + "password=111;"
