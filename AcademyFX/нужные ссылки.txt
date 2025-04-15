@@ -1,0 +1,2 @@
+//https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
+//https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022

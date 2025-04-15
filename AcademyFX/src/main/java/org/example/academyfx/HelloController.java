@@ -1,7 +1,12 @@
 package org.example.academyfx;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 
 import java.sql.*;
 
@@ -33,6 +38,9 @@ public class HelloController {
     @FXML
     private Button check;
     @FXML
+    private TableView tableDirections;
+
+    @FXML
     protected void onLoadButtonClick() throws SQLException
     {
         //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
@@ -62,11 +70,63 @@ public class HelloController {
         alert.show();
     }
     @FXML
-        protected void onCheckButtonClick()
+    protected void onCheckButtonClick()
+    {
+        String msg = cbDirections.getValue().toString();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
+        alert.show();
+    }
+    @FXML
+    protected void loadDirections() throws SQLException
+    {
+        //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+        String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+                + "database=PD_212;"
+                + "user=PHP;"
+                + "password=111;"
+                + "ConnectTimeout=30;"
+                + "Encrypt=True;"
+                + "TrustServerCertificate=True;"
+                + "ApplicationIntent=ReadWrite;"
+                + "MultiSubnetFailover=False;";
+        Connection connection = DriverManager.getConnection(connectionString);
+        Statement statement = connection.createStatement();
+        ResultSet set = statement.executeQuery("SELECT * FROM Directions");
+
+        //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
+        //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
+
+        for(int i=0; i<set.getMetaData().getColumnCount();i++)
         {
-            String msg = cbDirections.getValue().toString();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
-            alert.show();
+            final int j=i;
+            TableColumn col = new TableColumn(set.getMetaData().getColumnName(i+1));
+            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList,String> param) {
+                    return new SimpleStringProperty(param.getValue().get(j).toString());
+                }
+            });
+            tableDirections.getColumns().add(col);
         }
+        //конструкция двумерного динамического массива "Список списков"
+        ObservableList<ObservableList> data = FXCollections.observableArrayList();
+        while(set.next())
+        {
+            //читаем строку из базы
+            ObservableList<String> row = FXCollections.observableArrayList();
+            for(int i=1; i<=set.getMetaData().getColumnCount();i++)
+            {
+                row.add(set.getString(i));
+            }
+            //добавляем коллекцию
+            data.add(row);
+        }
+        //tableDirections.getItems().clear();
+        tableDirections.setItems(data);
+
+
+        connection.close();
+    }
+
 
 }

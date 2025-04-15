@@ -11,6 +11,7 @@ module org.example.academyfx {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires java.desktop;
 
     opens org.example.academyfx to javafx.fxml;
     exports org.example.academyfx;
