@@ -8,6 +8,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
 <VBox alignment="CENTER" spacing="5.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.example.academyfx.HelloController">
     <padding>
@@ -25,4 +30,106 @@
     <ComboBox fx:id="cbDirections"/>
     <Button fx:id="load" text="Load" onAction="#onLoadButtonClick"/>
     <Button fx:id="check" text="Check" onAction="#onCheckButtonClick"/>
+    <TabPane>
+        <Tab text="Студенты">
+            <content>
+                <TableView fx:id="studentsTable" prefHeight="300" prefWidth="600">  <!--Создаёт компонент таблицы в JavaFX-->
+                    <columns>
+                        <TableColumn text="ID" prefWidth="50">                      <!--Создаёт колонку в таблице (Заголовок колонки, Ширина колонки 50 пикселей)-->
+                            <cellValueFactory>                                      <!--Определяет, как заполняются ячейки колонки-->
+                                <PropertyValueFactory property="id"/>               <!--Указывает, что значения берутся из свойства "id" объекта Student-->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Last Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="lastName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="First Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="firstName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Middle Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="middleName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Birth date" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="birthDate"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Group" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="groupName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </content>
+        </Tab>
+
+        <Tab text="Преподаватели">
+            <content>
+                <TableView fx:id="teachersTable" prefHeight="300" prefWidth="600">  <!--Создаёт компонент таблицы в JavaFX-->
+                    <columns>
+                        <TableColumn text="ID" prefWidth="50">                      <!--Создаёт колонку в таблице (Заголовок колонки, Ширина колонки 50 пикселей)-->
+                            <cellValueFactory>                                      <!--Определяет, как заполняются ячейки колонки-->
+                                <PropertyValueFactory property="id"/>               <!--Указывает, что значения берутся из свойства "id" объекта Student-->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Last Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="lastName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="First Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="firstName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Middle Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="middleName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Birth date" prefWidth="150">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="birthDate"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Work Since" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="workSince"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </content>
+        </Tab>
+        <Tab text="Группы">
+            <content>
+                <TableView fx:id="groupsTable" prefHeight="300" prefWidth="600">  <!--Создаёт компонент таблицы в JavaFX-->
+                    <columns>
+                        <TableColumn text="ID" prefWidth="50">                      <!--Создаёт колонку в таблице (Заголовок колонки, Ширина колонки 50 пикселей)-->
+                            <cellValueFactory>                                      <!--Определяет, как заполняются ячейки колонки-->
+                                <PropertyValueFactory property="id"/>               <!--Указывает, что значения берутся из свойства "id" объекта Student-->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Group Name" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="groupName"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Direction" prefWidth="100">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="direction"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+            </content>
+        </Tab>
+    </TabPane>
 </VBox>
