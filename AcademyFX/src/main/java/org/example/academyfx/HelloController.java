@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class HelloController {
    /* @FXML
@@ -38,7 +40,7 @@ public class HelloController {
     @FXML
     private Button check;
     @FXML
-    private TableView tableDirections;
+    private TableView<String[]> tableDirections;
 
     @FXML
     protected void onLoadButtonClick() throws SQLException
@@ -98,32 +100,23 @@ public class HelloController {
 
         for(int i=0; i<set.getMetaData().getColumnCount();i++)
         {
+            //создаем колонки с их названием и фабрику
+            TableColumn<String[], String> column = new TableColumn<>(set.getMetaData().getColumnLabel(i+1));
+            tableDirections.getColumns().add(column);
             final int j=i;
-            TableColumn col = new TableColumn(set.getMetaData().getColumnName(i+1));
-            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList,String> param) {
-                    return new SimpleStringProperty(param.getValue().get(j).toString());
-                }
-            });
-            tableDirections.getColumns().add(col);
+            column.setCellValueFactory(data->new SimpleStringProperty(data.getValue()[j]));
         }
-        //конструкция двумерного динамического массива "Список списков"
-        ObservableList<ObservableList> data = FXCollections.observableArrayList();
         while(set.next())
         {
-            //читаем строку из базы
-            ObservableList<String> row = FXCollections.observableArrayList();
-            for(int i=1; i<=set.getMetaData().getColumnCount();i++)
+            Collection<String> list = new ArrayList<>();
+            for(int i=1;i<=set.getMetaData().getColumnCount();i++)
             {
-                row.add(set.getString(i));
+                list.add(set.getString(i));
             }
-            //добавляем коллекцию
-            data.add(row);
+            String[] arr = new String[list.size()];
+            list.toArray(arr);
+            tableDirections.getItems().addAll(arr);
         }
-        //tableDirections.getItems().clear();
-        tableDirections.setItems(data);
-
 
         connection.close();
     }
