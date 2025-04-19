@@ -12,7 +12,10 @@ module org.example.academyfx {
     requires com.almasb.fxgl.all;
     requires java.sql;
     requires java.desktop;
+    requires jdk.jdi;
 
     opens org.example.academyfx to javafx.fxml;
     exports org.example.academyfx;
+    exports org.openjfx.academyfx;
+    opens org.openjfx.academyfx to javafx.fxml;
 }

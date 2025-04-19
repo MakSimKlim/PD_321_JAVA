@@ -1,18 +1,18 @@
-package org.example.academyfx;
+package org.openjfx.academyfx;
+//package org.example.academyfx;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.util.Callback;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class HelloController {
+    private Connector connector = null;
+    @FXML
+    private Label labelStatus;
    /* @FXML
     private TextField lastName;
     @FXML
@@ -79,9 +79,10 @@ public class HelloController {
         alert.show();
     }
     @FXML
-    protected void loadDirections() throws SQLException
+    protected void loadDirections() throws SQLException, Exception
     {
         //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+        /*
         String connectionString = "jdbc:sqlserver://EVEREST:1433;"
                 + "database=PD_212;"
                 + "user=PHP;"
@@ -91,9 +92,14 @@ public class HelloController {
                 + "TrustServerCertificate=True;"
                 + "ApplicationIntent=ReadWrite;"
                 + "MultiSubnetFailover=False;";
-        Connection connection = DriverManager.getConnection(connectionString);
-        Statement statement = connection.createStatement();
-        ResultSet set = statement.executeQuery("SELECT * FROM Directions");
+        Connection connection = DriverManager.getConnection(connectionString);*/
+        try{
+        //Statement statement = connection.createStatement();
+        //ResultSet set = statement.executeQuery("SELECT * FROM Directions");
+
+            Statement statement = connector.getConnection().createStatement();
+
+            ResultSet set = statement.executeQuery("SELECT * FROM Directions");
 
         //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
         //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
@@ -118,8 +124,62 @@ public class HelloController {
             tableDirections.getItems().addAll(arr);
         }
 
-        connection.close();
+        //connection.close();
     }
-
+        catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    protected void connect()
+    {
+        if (connector == null)
+        {
+            String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+                    + "database=PD_212;"
+                    + "user=PHP;"
+                    + "password=111;"
+                    + "ConnectTimeout=30;"
+                    + "Encrypt=True;"
+                    + "TrustServerCertificate=True;"
+                    + "ApplicationIntent=ReadWrite;"
+                    + "MultiSubnetFailover=False;";
+            try
+            {
+                connector = new Connector(connectionString);
+                labelStatus.setText("Connected\n" + connector.getConnection().toString());
+            }
+            catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                error.showAndWait();
+            }
+        }
+        else
+        {
+            Alert error = new Alert(Alert.AlertType.ERROR, "Connection already established", ButtonType.OK);
+            error.show();
+        }
+    }
+    @FXML
+    protected void disconnect()
+    {
+        if(connector != null)
+        {
+            try
+            {
+                connector.closeConnection();
+                //TODO: clear all data
+                connector = null;
+                labelStatus.setText("Disconnected");
+            }
+            catch (SQLException e)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                alert.showAndWait();
+            }
+        }
+    }
 
 }
