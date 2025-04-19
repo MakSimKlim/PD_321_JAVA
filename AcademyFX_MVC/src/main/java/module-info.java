@@ -13,4 +13,6 @@ module org.openjfx.academyfx_mvc {
 
     opens org.openjfx.academyfx_mvc to javafx.fxml;
     exports org.openjfx.academyfx_mvc;
+    exports org.openjfx.academyfx_mvc.Controller;
+    opens org.openjfx.academyfx_mvc.Controller to javafx.fxml;
 }

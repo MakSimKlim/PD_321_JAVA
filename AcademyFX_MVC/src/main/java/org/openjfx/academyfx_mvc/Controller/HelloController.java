@@ -1,4 +1,4 @@
-package org.openjfx.academyfx_mvc;
+package org.openjfx.academyfx_mvc.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
