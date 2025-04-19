@@ -4,6 +4,7 @@ package org.openjfx.academyfx;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.academyfx.Connector;
 
 import java.sql.*;
 import java.util.ArrayList;
