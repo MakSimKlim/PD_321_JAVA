@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<TabPane minHeight="600.0" minWidth="800.0" prefHeight="437.0" prefWidth="694.0" tabMinWidth="100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.academyfx.HelloController">
+    <tabs>
+        <Tab closable="false" text="Start">
+            <content>
+                <VBox alignment="CENTER" spacing="5.0">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                    </padding>
+                    <!--<Label text="Last name:"/>
+                    <TextField  fx:id="lastName" promptText="Last name"/>
+                    <Label text="First name:"/>
+                    <TextField  fx:id="firstName" promptText="First name"/>
+                    <Label text="Age:"/>
+                    <DatePicker  fx:id="age" promptText="Birth date"/>
+                    <Label fx:id="welcomeText"/>
+                    <Button text="Submit!" onAction="#onHelloButtonClick"/>-->
+
+                    <ComboBox fx:id="cbDirections" />
+                    <Button fx:id="load" onAction="#onLoadButtonClick" text="Load" />
+                    <Button fx:id="check" onAction="#onCheckButtonClick" text="Check" />
+                    <Label fx:id="labelStatus" text="Disconnected">
+                        <font>
+                            <Font size="31.0" />
+                        </font>
+                    </Label>
+                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                        <children>
+                            <Button mnemonicParsing="false" onAction="#connect" text="Connect" />
+                            <Button mnemonicParsing="false" onAction="#disconnect" text="Disconnect" />
+                        </children>
+                    </HBox>
+                </VBox>
+            </content>
+        </Tab>
+        <Tab text="Students">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+        <Tab closable="false" text="Groups">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+        <Tab closable="false" onSelectionChanged="#loadDirections" text="Directions">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
+                    <children>
+                        <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
+                            <center>
+                                <TableView fx:id="tableDirections" prefHeight="497.0" prefWidth="635.0" BorderPane.alignment="CENTER" />
+                            </center>
+                        </BorderPane>
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
