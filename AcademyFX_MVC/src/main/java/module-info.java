@@ -10,6 +10,7 @@ module org.openjfx.academyfx_mvc {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens org.openjfx.academyfx_mvc to javafx.fxml;
     exports org.openjfx.academyfx_mvc;
