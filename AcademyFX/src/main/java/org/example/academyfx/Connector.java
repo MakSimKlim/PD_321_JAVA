@@ -1,3 +1,4 @@
+//package org.openjfx.academyfx;
 package org.example.academyfx;
 
 import java.sql.Connection;

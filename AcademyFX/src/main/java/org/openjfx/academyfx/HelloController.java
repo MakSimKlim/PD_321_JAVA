@@ -12,8 +12,10 @@ import java.util.Collection;
 
 public class HelloController {
     private Connector connector = null;
-    @FXML
-    private Label labelStatus;
+
+    /*@FXML
+    private Label labelStatus;*/
+
    /* @FXML
     private TextField lastName;
     @FXML
@@ -34,6 +36,9 @@ public class HelloController {
         alert.show();
         }
     */
+
+    @FXML
+    private TextField textFieldStatus;
     @FXML
     private ComboBox cbDirections;
     @FXML
@@ -183,7 +188,9 @@ public class HelloController {
             try
             {
                 connector = new Connector(connectionString);
-                labelStatus.setText("Connected\n" + connector.getConnection().toString());
+                //labelStatus.setText("Connected\n" + connector.getConnection().toString());
+                textFieldStatus.setText("Connected to DataBase DONE: " + connector.getConnection().toString());
+                textFieldStatus.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
             }
             catch (SQLException e)
             {
@@ -207,7 +214,9 @@ public class HelloController {
                 connector.closeConnection();
                 //TODO: clear all data
                 connector = null;
-                labelStatus.setText("Disconnected");
+                //labelStatus.setText("Disconnected");
+                textFieldStatus.setText("Disconnected");
+                textFieldStatus.setStyle("-fx-text-fill: red; -fx-font-weight: normal;");
             }
             catch (SQLException e)
             {
