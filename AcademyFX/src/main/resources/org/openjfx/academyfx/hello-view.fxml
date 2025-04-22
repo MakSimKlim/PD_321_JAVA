@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -42,7 +41,7 @@
                             <Font size="31.0" />
                         </font>
                     </Label>-->
-                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                    <HBox alignment="CENTER" prefHeight="284.0" prefWidth="760.0" spacing="20.0">
                         <children>
                             <Button mnemonicParsing="false" onAction="#connect" text="Connect" />
                             <Button mnemonicParsing="false" onAction="#disconnect" text="Disconnect" />
@@ -53,41 +52,41 @@
         </Tab>
         <Tab onSelectionChanged="#loadStudents" text="Students">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
-                    <children>
+                <!--<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
+                    <children>-->
                         <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
                             <center>
                                 <TableView fx:id="tableStudents" prefHeight="343.0" prefWidth="435.0" BorderPane.alignment="CENTER" />
                             </center>
                         </BorderPane>
-                    </children>
-                </AnchorPane>
+                    <!--</children>
+                </AnchorPane>-->
             </content>
         </Tab>
         <Tab closable="false" onSelectionChanged="#loadGroups" text="Groups">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
-                    <children>
+                <!--<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
+                    <children>-->
                         <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
                             <center>
                                 <TableView fx:id="tableGroups" prefHeight="343.0" prefWidth="435.0" BorderPane.alignment="CENTER" />
                             </center>
                         </BorderPane>
-                    </children>
-                </AnchorPane>
+                    <!--</children>
+                </AnchorPane>-->
             </content>
         </Tab>
         <Tab closable="false" onSelectionChanged="#loadDirections" text="Directions">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
-                    <children>
+                <!--<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
+                    <children>-->
                         <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
                             <center>
                                 <TableView fx:id="tableDirections" prefHeight="343.0" prefWidth="435.0" BorderPane.alignment="CENTER" />
                             </center>
                         </BorderPane>
-                    </children>
-                </AnchorPane>
+                    <!--</children>
+                </AnchorPane>-->
             </content>
         </Tab>
     </tabs>
@@ -117,6 +116,6 @@
    </top>
    <bottom />
    <bottom>
-      <TextField fx:id="textFieldStatus" editable="false" style="-fx-text-fill: red; -fx-font-weight: normal" text="Disconnected" BorderPane.alignment="CENTER" />
+      <TextField fx:id="textFieldStatus" editable="false" prefHeight="45.0" prefWidth="800.0" style="-fx-text-fill: red; -fx-font-weight: normal" text="Disconnected" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>

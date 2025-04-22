@@ -56,8 +56,9 @@ public class HelloController {
     @FXML
     protected void onLoadButtonClick() throws SQLException
     {
-        //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
-        String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+        String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+        //String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+        //String connectionString = "jdbc:sqlserver://localhost:1433;"
                 + "database=PD_212;"
                 + "user=PHP;"
                 + "password=111;"
@@ -106,14 +107,19 @@ public class HelloController {
             //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
             //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
 
-            // Создаем колонки
+            // 1. Очищаем предыдущие данные и колонки
+            tableStudents.getItems().clear();
+            tableStudents.getColumns().clear();
+
+            // Затем создаем новые колонки
             for(int i=0; i<set.getMetaData().getColumnCount();i++)
             {
                 //создаем колонки с их названием и фабрику
                 TableColumn<String[], String> column = new TableColumn<>(set.getMetaData().getColumnLabel(i+1));
-                tableStudents.getColumns().add(column);
+                //tableStudents.getColumns().add(column);
                 final int j=i;
                 column.setCellValueFactory(data->new SimpleStringProperty(data.getValue()[j]));
+                tableStudents.getColumns().add(column);
             }
 
             // Заполняем таблицу данными
@@ -153,7 +159,10 @@ public class HelloController {
             //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
             //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
 
-            // Создаем колонки
+            // 1. Очищаем предыдущие данные и колонки
+            tableGroups.getItems().clear();
+            tableGroups.getColumns().clear();
+
             for(int i=0; i<set.getMetaData().getColumnCount();i++)
             {
                 //создаем колонки с их названием и фабрику
@@ -216,7 +225,10 @@ public class HelloController {
         //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
         //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
 
-        // Создаем колонки
+            // 1. Очищаем предыдущие данные и колонки
+            tableDirections.getItems().clear();
+            tableDirections.getColumns().clear();
+
         for(int i=0; i<set.getMetaData().getColumnCount();i++)
         {
             //создаем колонки с их названием и фабрику
@@ -275,7 +287,8 @@ public class HelloController {
     {
         if (connector == null)
         {
-            String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+            //String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+            String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
                     + "database=PD_212;"
                     + "user=PHP;"
                     + "password=111;"

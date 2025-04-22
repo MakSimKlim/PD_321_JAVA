@@ -13,6 +13,8 @@ module org.example.academyfx {
     requires java.sql;
     requires java.desktop;
     requires jdk.jdi;
+    requires javafx.graphics;
+    requires javafx.base;
 
     opens org.example.academyfx to javafx.fxml;
     exports org.example.academyfx;
