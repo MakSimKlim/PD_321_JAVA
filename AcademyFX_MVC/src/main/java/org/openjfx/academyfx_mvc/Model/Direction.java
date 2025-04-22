@@ -32,7 +32,7 @@ public class Direction {
     }
     public final String getDirectionName()
     {
-        return directionName.get();
+        return directionName.get()  ;
     }
     public final void setDirectionName(String direction_name)
     {
