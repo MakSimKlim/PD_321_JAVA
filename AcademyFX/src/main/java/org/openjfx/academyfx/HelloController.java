@@ -46,7 +46,12 @@ public class HelloController {
     @FXML
     private Button check;
     @FXML
+    private TableView<String[]> tableStudents;
+    @FXML
+    private TableView<String[]> tableGroups;
+    @FXML
     private TableView<String[]> tableDirections;
+
 
     @FXML
     protected void onLoadButtonClick() throws SQLException
@@ -83,6 +88,100 @@ public class HelloController {
         String msg = cbDirections.getValue().toString();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
         alert.show();
+    }
+
+    @FXML
+    protected void loadStudents() throws SQLException, Exception
+    {
+        if (connector == null) {
+            switchToConnectTab(); // Переключаем на вкладку с подключением
+            return;
+        }
+        try{
+
+            Statement statement = connector.getConnection().createStatement();
+
+            ResultSet set = statement.executeQuery("SELECT * FROM Students");
+
+            //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
+            //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
+
+            // Создаем колонки
+            for(int i=0; i<set.getMetaData().getColumnCount();i++)
+            {
+                //создаем колонки с их названием и фабрику
+                TableColumn<String[], String> column = new TableColumn<>(set.getMetaData().getColumnLabel(i+1));
+                tableStudents.getColumns().add(column);
+                final int j=i;
+                column.setCellValueFactory(data->new SimpleStringProperty(data.getValue()[j]));
+            }
+
+            // Заполняем таблицу данными
+            while(set.next())
+            {
+                Collection<String> list = new ArrayList<>();
+                for(int i=1;i<=set.getMetaData().getColumnCount();i++)
+                {
+                    list.add(set.getString(i));
+                }
+                String[] arr = new String[list.size()];
+                list.toArray(arr);
+                tableStudents.getItems().addAll(arr);
+            }
+
+            //connection.close();
+        }
+        catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    protected void loadGroups() throws SQLException, Exception
+    {
+        if (connector == null) {
+            switchToConnectTab(); // Переключаем на вкладку с подключением
+            return;
+        }
+        try{
+
+            Statement statement = connector.getConnection().createStatement();
+
+            ResultSet set = statement.executeQuery("SELECT * FROM Groups");
+
+            //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
+            //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
+
+            // Создаем колонки
+            for(int i=0; i<set.getMetaData().getColumnCount();i++)
+            {
+                //создаем колонки с их названием и фабрику
+                TableColumn<String[], String> column = new TableColumn<>(set.getMetaData().getColumnLabel(i+1));
+                tableGroups.getColumns().add(column);
+                final int j=i;
+                column.setCellValueFactory(data->new SimpleStringProperty(data.getValue()[j]));
+            }
+
+            // Заполняем таблицу данными
+            while(set.next())
+            {
+                Collection<String> list = new ArrayList<>();
+                for(int i=1;i<=set.getMetaData().getColumnCount();i++)
+                {
+                    list.add(set.getString(i));
+                }
+                String[] arr = new String[list.size()];
+                list.toArray(arr);
+                tableGroups.getItems().addAll(arr);
+            }
+
+            //connection.close();
+        }
+        catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
     @FXML

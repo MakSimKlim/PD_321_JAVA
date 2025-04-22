@@ -51,14 +51,30 @@
                 </VBox>
             </content>
         </Tab>
-        <Tab text="Students">
+        <Tab onSelectionChanged="#loadStudents" text="Students">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
+                    <children>
+                        <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
+                            <center>
+                                <TableView fx:id="tableStudents" prefHeight="343.0" prefWidth="435.0" BorderPane.alignment="CENTER" />
+                            </center>
+                        </BorderPane>
+                    </children>
+                </AnchorPane>
             </content>
         </Tab>
-        <Tab closable="false" text="Groups">
+        <Tab closable="false" onSelectionChanged="#loadGroups" text="Groups">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="298.0" prefWidth="282.0">
+                    <children>
+                        <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
+                            <center>
+                                <TableView fx:id="tableGroups" prefHeight="343.0" prefWidth="435.0" BorderPane.alignment="CENTER" />
+                            </center>
+                        </BorderPane>
+                    </children>
+                </AnchorPane>
             </content>
         </Tab>
         <Tab closable="false" onSelectionChanged="#loadDirections" text="Directions">
@@ -67,10 +83,11 @@
                     <children>
                         <BorderPane layoutX="15.0" layoutY="13.0" prefHeight="343.0" prefWidth="420.0">
                             <center>
-                                <TableView fx:id="tableDirections" prefHeight="497.0" prefWidth="635.0" BorderPane.alignment="CENTER" />
+                                <TableView fx:id="tableDirections" prefHeight="343.0" prefWidth="435.0" BorderPane.alignment="CENTER" />
                             </center>
                         </BorderPane>
-                    </children></AnchorPane>
+                    </children>
+                </AnchorPane>
             </content>
         </Tab>
     </tabs>
@@ -100,6 +117,6 @@
    </top>
    <bottom />
    <bottom>
-      <TextField fx:id="textFieldStatus" text="Disconnected" BorderPane.alignment="CENTER" editable="false" style="-fx-text-fill: red; -fx-font-weight: normal"/>
+      <TextField fx:id="textFieldStatus" editable="false" style="-fx-text-fill: red; -fx-font-weight: normal" text="Disconnected" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
