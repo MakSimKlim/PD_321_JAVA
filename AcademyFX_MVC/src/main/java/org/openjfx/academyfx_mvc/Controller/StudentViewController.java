@@ -54,7 +54,7 @@ public class StudentViewController extends HumanViewController
             //super.getDataFromBase();
             Statement statement = Connector.getConnection().createStatement();
             ResultSet set = statement.executeQuery("SELECT * FROM Students");
-            while(set.next()) list.add(new Student(set.getInt(1), set.getString(2), set.getString(3), set.getString(4), (Date) set.getObject(5), set.getInt(6)));
+            while(set.next()) list.add(new Student(set.getInt(1), set.getString(2), set.getString(3), set.getString(4), (Date) set.getObject(5), set.getString(6)));
             tableStudents.setItems(list);
             set.close();
             statement.close();

@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<TabPane minHeight="600.0" minWidth="800.0" prefHeight="437.0" prefWidth="694.0" tabMinWidth="100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.academyfx.HelloController">
+<TabPane fx:id="tabPane" minHeight="600.0" minWidth="800.0" prefHeight="437.0" prefWidth="694.0" tabMinWidth="100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.academyfx.HelloController">
     <tabs>
         <Tab closable="false" text="Start">
             <content>
-                <VBox alignment="CENTER" spacing="5.0">
+                <VBox alignment="CENTER" prefHeight="348.0" prefWidth="597.0" spacing="5.0">
                     <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                     </padding>
@@ -62,4 +62,5 @@
             </content>
         </Tab>
     </tabs>
+
 </TabPane>

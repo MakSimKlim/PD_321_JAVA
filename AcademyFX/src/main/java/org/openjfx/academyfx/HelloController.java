@@ -79,6 +79,7 @@ public class HelloController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
         alert.show();
     }
+
     @FXML
     protected void loadDirections() throws SQLException, Exception
     {
@@ -94,6 +95,12 @@ public class HelloController {
                 + "ApplicationIntent=ReadWrite;"
                 + "MultiSubnetFailover=False;";
         Connection connection = DriverManager.getConnection(connectionString);*/
+
+        if (connector == null) {
+            switchToConnectTab(); // Переключаем на вкладку с подключением
+            return;
+        }
+
         try{
         //Statement statement = connection.createStatement();
         //ResultSet set = statement.executeQuery("SELECT * FROM Directions");
@@ -105,6 +112,7 @@ public class HelloController {
         //https://blog.ngopal.com.np/2011/10/19/dyanmic-tableview-data-from-database/
         //https://forums.oracle.com/ords/apexds/post/how-fill-a-tableview-with-a-resultset-3022
 
+        // Создаем колонки
         for(int i=0; i<set.getMetaData().getColumnCount();i++)
         {
             //создаем колонки с их названием и фабрику
@@ -113,6 +121,8 @@ public class HelloController {
             final int j=i;
             column.setCellValueFactory(data->new SimpleStringProperty(data.getValue()[j]));
         }
+
+        // Заполняем таблицу данными
         while(set.next())
         {
             Collection<String> list = new ArrayList<>();
@@ -132,6 +142,30 @@ public class HelloController {
             alert.showAndWait();
         }
     }
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private void switchToConnectTab() {
+        // Находим вкладку "Start" с кнопкой Connect
+        for (Tab tab : tabPane.getTabs()) {
+            if ("Start".equals(tab.getText())) {
+                tabPane.getSelectionModel().select(tab); // Переключаемся на вкладку "Start"
+                break;
+            }
+        }
+
+        // Alert для ясности
+        Alert alert = new Alert(
+                Alert.AlertType.INFORMATION,
+                "Нажмите 'Connect'.",
+                ButtonType.OK
+        );
+        alert.setHeaderText(null);
+        alert.show();
+    }
+
+
     @FXML
     protected void connect()
     {
