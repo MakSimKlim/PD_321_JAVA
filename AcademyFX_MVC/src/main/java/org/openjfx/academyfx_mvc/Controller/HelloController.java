@@ -28,7 +28,7 @@ public class HelloController {
     {
         textFieldStatus.setText("Connected: " + Connector.getConnection().toString());
     }
-    /*@FXML
+    @FXML
     protected void onTabStudentsSelected()throws IOException
     {
         if(tabStudents.isSelected())
@@ -38,7 +38,7 @@ public class HelloController {
             StudentViewController controller = fxmlLoader.getController();
             controller.getDataFromBase();
         }
-    }*/
+    }
     @FXML
     protected void onTabDirectionsSelected()throws IOException
     {
@@ -48,7 +48,7 @@ public class HelloController {
             tabDirections.setContent(fxmlLoader.load());
         }
     }
-    /*@FXML
+    @FXML
     protected void onTabHumansSelected()throws IOException
     {
         if(tabHumans.isSelected())
@@ -58,5 +58,5 @@ public class HelloController {
             HumanViewController controller = fxmlLoader.getController();
             controller.getDataFromBase();
         }
-    }*/
+    }
 }
