@@ -13,10 +13,15 @@ public class Student extends Human
 {
     private final IntegerProperty group;
 
-    public Student(Integer id, String lastName, String firstName, String middleName, Date birthDate, String groupName) {
+    /*public Student(Integer id, String lastName, String firstName, String middleName, Date birthDate, String groupName) {
         super(id, lastName, firstName, middleName, birthDate);
         this.group = new SimpleIntegerProperty(group);
         this.groupName = new SimpleStringProperty(groupName);
+    }*/
+
+    public Student(Integer id, String lastName, String firstName, String middleName, Date birthDate, Integer group) {
+        super(id, lastName, firstName, middleName, birthDate);
+        this.group = new SimpleIntegerProperty(group);
     }
 
     public IntegerProperty groupProperty()
@@ -34,7 +39,7 @@ public class Student extends Human
     /// //////////////////////////////////////////////////////
     // Navigation properties:
 
-    private final StringProperty groupName;
+    /*private final StringProperty groupName;
     public StringProperty groupNameProperty()
     {
         return groupName;
@@ -46,5 +51,5 @@ public class Student extends Human
     public final void setGroupName(String groupName)
     {
         this.groupName.set(groupName);
-    }
+    }*/
 }

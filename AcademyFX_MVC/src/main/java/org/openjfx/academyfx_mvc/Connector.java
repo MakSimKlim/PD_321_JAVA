@@ -7,7 +7,8 @@ import java.sql.SQLException;
 public class Connector {
     private static String connectionString =
             //"jdbc:sqlserver://localhost:1433;" +
-            "jdbc:sqlserver://EVEREST:1433;" +
+            //"jdbc:sqlserver://EVEREST:1433;" +
+            "jdbc:sqlserver://VANYACOMP:1433;" +
                     "database=PD_212;" +
                     "user=PHP;" +
                     "password=111;" +
