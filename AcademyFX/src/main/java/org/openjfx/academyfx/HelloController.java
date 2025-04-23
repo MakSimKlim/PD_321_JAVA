@@ -13,6 +13,19 @@ import java.util.Collection;
 public class HelloController {
     private Connector connector = null;
 
+            //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
+            String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+            //String connectionString = "jdbc:sqlserver://DELL:1433;"
+            //String connectionString = "jdbc:sqlserver://localhost:1433;"
+            + "database=PD_212;"
+            + "user=PHP;"
+            + "password=111;"
+            + "ConnectTimeout=30;"
+            + "Encrypt=True;"
+            + "TrustServerCertificate=True;"
+            + "ApplicationIntent=ReadWrite;"
+            + "MultiSubnetFailover=False;";
+
     /*@FXML
     private Label labelStatus;*/
 
@@ -56,18 +69,6 @@ public class HelloController {
     @FXML
     protected void onLoadButtonClick() throws SQLException
     {
-        String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
-        //String connectionString = "jdbc:sqlserver://EVEREST:1433;"
-        //String connectionString = "jdbc:sqlserver://localhost:1433;"
-                + "database=PD_212;"
-                + "user=PHP;"
-                + "password=111;"
-                + "ConnectTimeout=30;"
-                + "Encrypt=True;"
-                + "TrustServerCertificate=True;"
-                + "ApplicationIntent=ReadWrite;"
-                + "MultiSubnetFailover=False;";
-
         Connection connection = DriverManager.getConnection(connectionString);
 
         Statement statement = connection.createStatement();
@@ -82,13 +83,17 @@ public class HelloController {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION, connectionString, ButtonType.OK);
         alert.show();
+
+
     }
     @FXML
     protected void onCheckButtonClick()
     {
-        String msg = cbDirections.getValue().toString();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
-        alert.show();
+        if (cbDirections.getValue() != null) {
+            String msg = cbDirections.getValue().toString();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
+            alert.show();
+        }
     }
 
     @FXML
@@ -287,17 +292,7 @@ public class HelloController {
     {
         if (connector == null)
         {
-            //String connectionString = "jdbc:sqlserver://EVEREST:1433;"
-            String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
-                    + "database=PD_212;"
-                    + "user=PHP;"
-                    + "password=111;"
-                    + "ConnectTimeout=30;"
-                    + "Encrypt=True;"
-                    + "TrustServerCertificate=True;"
-                    + "ApplicationIntent=ReadWrite;"
-                    + "MultiSubnetFailover=False;";
-            try
+           try
             {
                 connector = new Connector(connectionString);
                 //labelStatus.setText("Connected\n" + connector.getConnection().toString());
