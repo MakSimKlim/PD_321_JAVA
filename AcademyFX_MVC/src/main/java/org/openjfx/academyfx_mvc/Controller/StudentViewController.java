@@ -1,10 +1,9 @@
 package org.openjfx.academyfx_mvc.Controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.academyfx_mvc.Connector;
 import org.openjfx.academyfx_mvc.Model.Human;
 import org.openjfx.academyfx_mvc.Model.Student;
@@ -17,6 +16,7 @@ import java.util.Date;
 public class StudentViewController extends HumanViewController
 {
     @FXML
+    //private TableView<Human> tableStudents;
     private TableView<Human> tableStudents;
     /*
     @FXML
@@ -30,17 +30,41 @@ public class StudentViewController extends HumanViewController
      @FXML
      private TableColumn<Student, Date> birthDate;
      */
-    @FXML
-    private TableColumn<Student, Integer> group;
 
-    //private final ObservableList<Student> list = FXCollections.observableArrayList();
+    /*@FXML
+    private TableColumn<Student, Integer> group;*/
+
+    // //private final ObservableList<Student> list = FXCollections.observableArrayList();
+
+    // Колонки из human-columns.fxml
+    @FXML
+    private TableColumn<Student, Integer> colId;
+    @FXML
+    private TableColumn<Student, String> colLastName;
+    @FXML
+    private TableColumn<Student, String> colFirstName;
+    @FXML
+    private TableColumn<Student, String> colMiddleName;
+    @FXML
+    private TableColumn<Student, Date> colBirthDate;
+    // Уникальная колонка
+    @FXML private TableColumn<Student, Integer> colGroup;
 
     @FXML
     protected void initialize()
     {
-        super.initialize();
-        group.setCellValueFactory(data -> data.getValue().groupProperty().asObject());
-        //getDataFromBase();
+        //super.initialize();
+        //group.setCellValueFactory(data -> data.getValue().groupProperty().asObject());
+        // //getDataFromBase();
+
+        // Общие колонки
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
+        colBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+        // Уникальная колонка
+        colGroup.setCellValueFactory(new PropertyValueFactory<>("group"));
     }
     public void getDataFromBase()
     {

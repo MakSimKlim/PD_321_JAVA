@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.openjfx.academyfx_mvc.Connector;
 import org.openjfx.academyfx_mvc.Model.Human;
 
@@ -16,6 +17,8 @@ import java.util.Date;
 public class HumanViewController {
     @FXML
     private TableView<Human> tableHumans;
+
+    /*
     @FXML
     private TableColumn<Human, Integer> id;
     @FXML
@@ -25,19 +28,47 @@ public class HumanViewController {
     @FXML
     private TableColumn<Human, String> middleName;
     @FXML
-    private TableColumn<Human, Date> birthDate;
+    private TableColumn<Human, Date> birthDate;*/
+
+    // Колонки из human-columns.fxml
+    @FXML
+    private TableColumn<Human, Integer> colId;
+    @FXML
+    private TableColumn<Human, String> colLastName;
+    @FXML
+    private TableColumn<Human, String> colFirstName;
+    @FXML
+    private TableColumn<Human, String> colMiddleName;
+    @FXML
+    private TableColumn<Human, Date> colBirthDate;
 
     protected final ObservableList<Human> list = FXCollections.observableArrayList();
 
     @FXML
     protected void initialize()
     {
+        /*
         id.setCellValueFactory(data -> data.getValue().idProperty().asObject());
         lastName.setCellValueFactory(data -> data.getValue().lastNameProperty());
         firstName.setCellValueFactory(data -> data.getValue().firstNameProperty());
         middleName.setCellValueFactory(data -> data.getValue().middleNameProperty());
         birthDate.setCellValueFactory(data -> data.getValue().birthDateProperty());
-//        load();
+        */
+        /*
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colMiddleName.setCellValueFactory(new PropertyValueFactory<>("middleName"));
+        colBirthDate.setCellValueFactory(new PropertyValueFactory<>("birthDate"));
+        */
+        colId.setCellValueFactory(data -> data.getValue().idProperty().asObject());
+        colLastName.setCellValueFactory(data -> data.getValue().lastNameProperty());
+        colFirstName.setCellValueFactory(data -> data.getValue().firstNameProperty());
+        colMiddleName.setCellValueFactory(data -> data.getValue().middleNameProperty());
+        colBirthDate.setCellValueFactory(data -> data.getValue().birthDateProperty());
+
+
+        //load();
     }
     public void getDataFromBase()
     {

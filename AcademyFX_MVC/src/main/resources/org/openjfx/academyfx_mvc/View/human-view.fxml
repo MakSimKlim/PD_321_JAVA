@@ -2,19 +2,20 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.openjfx.academyfx_mvc.Controller.HumanViewController">
-    <children>
-        <TableView fx:id="tableHumans" layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <columns>
-                <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="lastName" prefWidth="75.0" text="Фамилия" />
-                <TableColumn fx:id="firstName" prefWidth="75.0" text="Имя" />
-                <TableColumn fx:id="middleName" prefWidth="75.0" text="Отчество" />
-                <TableColumn fx:id="birthDate" prefWidth="106.0" text="Дата рождения" />
-            </columns>
-        </TableView>
-    </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.6"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.openjfx.academyfx_mvc.Controller.HumanViewController">
+
+    <TableView fx:id="tableHumans" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="0.0">
+        <columns>
+            <!-- Включаем общие колонки -->
+            <fx:include source="human-columns.fxml" />
+        </columns>
+    </TableView>
 
 </AnchorPane>
