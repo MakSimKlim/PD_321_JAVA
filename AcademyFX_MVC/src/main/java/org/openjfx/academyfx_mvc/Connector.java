@@ -5,15 +5,18 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connector {
-    private static String connectionString =
-            //"jdbc:sqlserver://localhost:1433;" +
-            //"jdbc:sqlserver://EVEREST:1433;" +
-            "jdbc:sqlserver://VANYACOMP:1433;" +
-                    "database=PD_212;" +
-                    "user=PHP;" +
-                    "password=111;" +
-                    "Connect Timeout=30;Encrypt=True;" +
-                    "TrustServerCertificate=True;";
+    static String connectionString = String.format(    // добавлено
+            "jdbc:sqlserver://%s:1433;"                // добавлено
+                    + "database=PD_212;"
+                    + "user=PHP;"
+                    + "password=111;"
+                    + "ConnectTimeout=30;"
+                    + "Encrypt=True;"
+                    + "TrustServerCertificate=True;"
+                    + "ApplicationIntent=ReadWrite;"
+                    + "MultiSubnetFailover=False;",
+            System.getenv("COMPUTERNAME") // добавлено: Автоматически подставит имя текущего ПК
+    );
     private static Connection connection;
     Connector()throws SQLException
     {
