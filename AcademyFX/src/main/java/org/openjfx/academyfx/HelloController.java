@@ -69,7 +69,7 @@ public class HelloController {
     @FXML
     protected void onLoadButtonClick() throws SQLException
     {
-        Connection connection = DriverManager.getConnection(connectionString);
+        /*Connection connection = DriverManager.getConnection(connectionString);
 
         Statement statement = connection.createStatement();
 
@@ -82,7 +82,33 @@ public class HelloController {
         connection.close();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION, connectionString, ButtonType.OK);
-        alert.show();
+        alert.show();*/
+
+        if (connector == null) {
+            switchToConnectTab(); // Переключаем на вкладку подключения
+            return;
+        }
+
+        try {
+            Connection connection = connector.getConnection(); // Получаем соединение из объекта connector
+            Statement statement = connection.createStatement();
+            ResultSet set = statement.executeQuery("SELECT * FROM Directions");
+
+            cbDirections.getItems().clear(); // Очищаем список перед загрузкой новых данных
+            while (set.next()) {
+                cbDirections.getItems().add(set.getString("direction_name")); // Добавляем элементы в ComboBox
+            }
+
+            set.close();
+            statement.close();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Данные загружены успешно!", ButtonType.OK);
+            alert.show();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Ошибка при загрузке данных: " + e.getMessage(), ButtonType.OK);
+            alert.showAndWait();
+        }
+
 
 
     }
@@ -319,7 +345,18 @@ public class HelloController {
             try
             {
                 connector.closeConnection();
-                //TODO: clear all data
+
+                // Очистка данных из ComboBox
+                cbDirections.getItems().clear();
+
+                // Очистка данных из TableView на вкладках
+                tableStudents.getItems().clear();
+                tableStudents.getColumns().clear();
+                tableGroups.getItems().clear();
+                tableGroups.getColumns().clear();
+                tableDirections.getItems().clear();
+                tableDirections.getColumns().clear();
+
                 connector = null;
                 //labelStatus.setText("Disconnected");
                 textFieldStatus.setText("Disconnected");
