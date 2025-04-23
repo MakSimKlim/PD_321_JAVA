@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class HelloController {
-    private Connector connector = null;
+    public Connector connector = null;
 
             //String connectionString = "jdbc:sqlserver://VANYACOMP:1433;"
-            String connectionString = "jdbc:sqlserver://EVEREST:1433;"
+            //String connectionString = "jdbc:sqlserver://EVEREST:1433;"
             //String connectionString = "jdbc:sqlserver://DELL:1433;"
             //String connectionString = "jdbc:sqlserver://localhost:1433;"
+            String connectionString = String.format(    // добавлено
+             "jdbc:sqlserver://%s:1433;"                // добавлено
             + "database=PD_212;"
             + "user=PHP;"
             + "password=111;"
@@ -24,7 +26,9 @@ public class HelloController {
             + "Encrypt=True;"
             + "TrustServerCertificate=True;"
             + "ApplicationIntent=ReadWrite;"
-            + "MultiSubnetFailover=False;";
+            + "MultiSubnetFailover=False;",
+            System.getenv("COMPUTERNAME") // добавлено: Автоматически подставит имя текущего ПК
+            );
 
     /*@FXML
     private Label labelStatus;*/
