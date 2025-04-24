@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="jars">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../Soft/JAVA/sqljdbc_12.10.0.0_rus/sqljdbc_12.10/rus/jars" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../../Soft/JAVA/sqljdbc_12.10.0.0_rus/sqljdbc_12.10/rus/jars" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../Soft/JAVA/sqljdbc_12.10.0.0_rus/sqljdbc_12.10/rus/jars" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../../Soft/JAVA/sqljdbc_12.10.0.0_rus/sqljdbc_12.10/rus/jars" recursive="false" type="SOURCES" />
+  </library>
+</component>
