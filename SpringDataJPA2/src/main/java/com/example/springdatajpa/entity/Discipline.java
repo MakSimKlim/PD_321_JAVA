@@ -1,10 +1,10 @@
 package com.example.springdatajpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Disciplines")
@@ -19,6 +19,12 @@ public class Discipline {
 
     @Column(name = "number_of_lessons", columnDefinition = "tinyint not null")
     private Short numberOfLessons;
+
+    @ManyToMany
+    @JoinTable(name = "TeachersDisciplinesRelation",
+            joinColumns = @JoinColumn(name = "discipline"),
+            inverseJoinColumns = @JoinColumn(name = "teacher"))
+    private Set<Teacher> teachers = new LinkedHashSet<>();
 
     public Short getId() {
         return id;
@@ -42,6 +48,14 @@ public class Discipline {
 
     public void setNumberOfLessons(Short numberOfLessons) {
         this.numberOfLessons = numberOfLessons;
+    }
+
+    public Set<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
 }

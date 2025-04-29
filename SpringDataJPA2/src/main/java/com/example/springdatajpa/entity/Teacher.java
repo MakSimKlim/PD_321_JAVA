@@ -1,17 +1,18 @@
 package com.example.springdatajpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Teachers")
 public class Teacher {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "teacher_id", nullable = false)
     private Integer id;
 
@@ -35,6 +36,9 @@ public class Teacher {
 
     @Column(name = "Image")
     private byte[] image;
+
+    @ManyToMany(mappedBy = "teachers")
+    private Set<Discipline> disciplines = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -92,4 +96,24 @@ public class Teacher {
         this.image = image;
     }
 
+    public Set<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public void setDisciplines(Set<Discipline> disciplines) {
+        this.disciplines = disciplines;
+    }
+
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", birthDate=" + birthDate +
+                ", workSince=" + workSince +
+                ", image=" + Arrays.toString(image) +
+                ", disciplines=" + disciplines +
+                '}';
+    }
 }
