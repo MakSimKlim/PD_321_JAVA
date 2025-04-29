@@ -16,7 +16,7 @@ public class SpringJpaMoviesApplication {
 		DirectorRepository directorRepository = context.getBean(DirectorRepository.class);
 		MovieRepository movieRepository = context.getBean(MovieRepository.class);
 		directorRepository.findAll().forEach(System.out::println);
-
+		movieRepository.findAll().forEach(System.out::println);
 	}
 
 }
